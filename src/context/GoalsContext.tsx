@@ -30,16 +30,18 @@ export const GoalsProvider = ({ children }: any) => {
     setGoals([...goals, ...resp?.data?.goals]);
   };
 
-  const addGoal = async (categoryId: string, goalName: string): Promise<Goal> => {
-
+  const addGoal = async (goal: Goal): Promise<Goal> => {
     const resp = await authApi.post<Goal>('/goals', {
-      nombre: goalName,
-      categoria: categoryId,
+      title: goal.title,
+      description: goal.description,
+      difficulty: goal.difficulty,
+      type: goal.type,
+      status: 'New',
+
     });
     setGoals([...goals, resp.data]);
 
     return resp.data;
-
   };
 
   const updateGoal = async (categoryId: string, goalName: string, goalId: string) => {

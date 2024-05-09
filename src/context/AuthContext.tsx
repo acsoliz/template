@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: any) => {
     if (!token) return dispatch({ type: 'notAuthenticated' });
 
     try {
-      const resp = await authApi.get('/api/auth/verify-token', {
+      const resp = await authApi.get('/api/auth/validation', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (resp.status !== 200) {

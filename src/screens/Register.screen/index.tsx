@@ -2,10 +2,11 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useContext, useEffect } from 'react';
 import { Alert, Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { WhiteLogo } from '../components/WhiteLogo';
-import { useForm } from '../hooks/useForm';
-import { loginStyles } from '../theme/loginTheme';
-import { AuthContext } from '../context/AuthContext';
+import { WhiteLogo } from '../../components/WhiteLogo';
+import { useForm } from '../../hooks/useForm';
+import { loginStyles } from './style';
+import { AuthContext } from '../../context/AuthContext';
+import { constants } from '../../constants/constants';
 
 interface Props extends StackScreenProps<any, any> { }
 
@@ -43,7 +44,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
     <>
 
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: '#5856D6' }}
+        style={{ flex: 1, backgroundColor: constants.colors.primary }}
         behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}
       >
 
@@ -59,12 +60,12 @@ export const RegisterScreen = ({ navigation }: Props) => {
           <TextInput
             placeholder="Ingrese su nombre:"
             placeholderTextColor="rgba(255,255,255,0.4)"
-            underlineColorAndroid="white"
+            underlineColorAndroid='black'
             style={[
               loginStyles.inputField,
               (Platform.OS === 'ios') && loginStyles.inputFieldIOS,
             ]}
-            selectionColor="white"
+            selectionColor='black'
             onChangeText={(value) => onChange(value, 'name')}
             value={name}
             onSubmitEditing={onRegister}
@@ -78,12 +79,12 @@ export const RegisterScreen = ({ navigation }: Props) => {
             placeholder="Ingrese su email:"
             placeholderTextColor="rgba(255,255,255,0.4)"
             keyboardType="email-address"
-            underlineColorAndroid="white"
+            underlineColorAndroid='black'
             style={[
               loginStyles.inputField,
               (Platform.OS === 'ios') && loginStyles.inputFieldIOS,
             ]}
-            selectionColor="white"
+            selectionColor='black'
             onChangeText={(value) => onChange(value, 'email')}
             value={email}
             onSubmitEditing={onRegister}
@@ -96,13 +97,13 @@ export const RegisterScreen = ({ navigation }: Props) => {
           <TextInput
             placeholder="******"
             placeholderTextColor="rgba(255,255,255,0.4)"
-            underlineColorAndroid="white"
+            underlineColorAndroid='black'
             secureTextEntry
             style={[
               loginStyles.inputField,
               (Platform.OS === 'ios') && loginStyles.inputFieldIOS,
             ]}
-            selectionColor="white"
+            selectionColor='black'
             onChangeText={(value) => onChange(value, 'password')}
             value={password}
             onSubmitEditing={onRegister}

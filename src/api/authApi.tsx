@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+const baseURL = process.env.REACT_APP_API_URL || 'https://babystep.pro';
 
 const authApi = axios.create({ baseURL });
 

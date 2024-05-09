@@ -1,12 +1,10 @@
 /* eslint-disable curly */
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { LoginScreen } from '../screens/Login.screen';
+import { LoginScreen } from '../screens/Login.screen/Login.screen';
 import { RegisterScreen } from '../screens/Register.screen';
-import { ProtectedScreen } from '../screens/ProtectedScreen';
 import { AuthContext } from '../context/AuthContext';
-import { LoadingScreen } from '../screens/Loading.screen';
-//import { ProductsNavigator } from './ProductsNavigator';
+import { LoadingScreen } from '../screens/Loading.screen/Loading.screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BottomTabNavigator from './bottomTabNavigator';
 

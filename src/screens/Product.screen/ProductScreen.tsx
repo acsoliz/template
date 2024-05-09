@@ -6,10 +6,10 @@ import { Picker } from '@react-native-picker/picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 import { StackScreenProps } from '@react-navigation/stack';
-import { ProductsStackParams } from '../navigator/ProductsNavigator';
-import { useCategories } from '../hooks/useCategories';
-import { useForm } from '../hooks/useForm';
-import { ProductsContext } from '../context/ProductsContext';
+import { ProductsStackParams } from '../../navigator/ProductsNavigator';
+import { useCategories } from '../../hooks/useCategories';
+import { useForm } from '../../hooks/useForm';
+import { ProductsContext } from '../../context/ProductsContext';
 
 interface Props extends StackScreenProps<ProductsStackParams, 'ProductScreen'> { }
 

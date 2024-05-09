@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ProductsScreen } from '../screens/ProductsScreen';
-import { ProductScreen } from '../screens/ProductScreen';
+import { ProductsScreen } from '../screens/Products.screen/ProductsScreen';
+import { ProductScreen } from '../screens/Product.screen/ProductScreen';
 
 export type ProductsStackParams = {
   ProductsScreen: undefined;

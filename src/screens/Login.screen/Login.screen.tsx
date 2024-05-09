@@ -2,12 +2,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
 import { Alert, Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Background } from '../components/Background';
-import { WhiteLogo } from '../components/WhiteLogo';
-import { useForm } from '../hooks/useForm';
-import { loginStyles } from '../theme/loginTheme';
+import { Background } from '../../components/Background';
+import { WhiteLogo } from '../../components/WhiteLogo';
+import { useForm } from '../../hooks/useForm';
+import { loginStyles } from '../Register.screen/style';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
+import { constants } from '../../constants/constants';
 
 interface Props extends StackScreenProps<any, any> { }
 
@@ -44,7 +45,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 
 
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: '#5856D6' }}
+        style={{ flex: 1, backgroundColor: constants.colors.primary }}
         behavior={(Platform.OS === 'ios') ? 'padding' : 'height'}
       >
 
@@ -61,12 +62,12 @@ export const LoginScreen = ({ navigation }: Props) => {
             placeholder="Email:"
             placeholderTextColor="rgba(255,255,255,0.4)"
             keyboardType="email-address"
-            underlineColorAndroid="white"
+            underlineColorAndroid='black'
             style={[
               loginStyles.inputField,
               (Platform.OS === 'ios') && loginStyles.inputFieldIOS,
             ]}
-            selectionColor="white"
+            selectionColor='black'
             onChangeText={(value) => onChange(value, 'email')}
             value={email}
             onSubmitEditing={onLogin}
@@ -79,13 +80,13 @@ export const LoginScreen = ({ navigation }: Props) => {
           <TextInput
             placeholder="Contraseña"
             placeholderTextColor="rgba(255,255,255,0.4)"
-            underlineColorAndroid="white"
+            underlineColorAndroid='black'
             secureTextEntry
             style={[
               loginStyles.inputField,
               (Platform.OS === 'ios') && loginStyles.inputFieldIOS,
             ]}
-            selectionColor="white"
+            selectionColor='black'
             onChangeText={(value) => onChange(value, 'password')}
             value={password}
             onSubmitEditing={onLogin}
@@ -100,7 +101,7 @@ export const LoginScreen = ({ navigation }: Props) => {
               style={loginStyles.button}
               onPress={onLogin}
             >
-              <Text style={loginStyles.buttonText}>Loginnn</Text>
+              <Text style={loginStyles.buttonText}>Login</Text>
             </TouchableOpacity>
           </View>
 

@@ -4,7 +4,8 @@ import { About } from '../scenes/about/about.scenes';
 import { Notification } from '../scenes/notification/notification.scenes';
 import { Info } from '../scenes/InfoScreen/info';
 import Icon from 'react-native-vector-icons/Ionicons'
-import { GoalsScreen } from '../screens/Goals.screen';
+import { GoalsNavigator } from './GoalsNavigator';
+import { constants } from '../constants/constants';
 
 
 const Tab = createBottomTabNavigator();
@@ -15,7 +16,7 @@ function BottomTabNavigator() {
             headerShown: false,
             tabBarIcon: ({ color, size, focused }) => {
                 let iconName: string = '';
-                if (route.route.name == "GoalsScreen") {
+                if (route.route.name == "Goals") {
                     iconName = focused ? 'ios-home-sharp' : 'ios-home-outline'
                 } else if (route.route.name == "About") {
                     iconName = focused ? 'ios-person-circle-sharp' : 'ios-person-circle-outline'
@@ -25,10 +26,15 @@ function BottomTabNavigator() {
                     iconName = focused ? 'settings-sharp' : 'settings-outline'
                 }
                 return <Icon name={iconName} size={22} color={color} />
-            }
-        })}>
+            },
+            tabBarStyle: {
+                backgroundColor: constants.colors.primary,
 
-            <Tab.Screen name="GoalsScreen" component={GoalsScreen} />
+            },
+        })}
+        >
+
+            <Tab.Screen name="Goals" component={GoalsNavigator} />
 
             <Tab.Screen name="About" component={About} />
             <Tab.Screen name="Notification" component={Notification} />

@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { GoalsScreen } from '../screens/Goals.screen';
-import { GoalScreen } from '../screens/Goal.screen';
+import { GoalScreen } from '../screens/Goal.screen/Goal.screen';
+import { Text, View } from 'react-native';
+import { GoalsScreen } from '../screens';
 
 export type GoalsStackParams = {
   GoalsScreen: undefined;
@@ -13,20 +14,19 @@ const Stack = createStackNavigator<GoalsStackParams>();
 export const GoalsNavigator = () => {
   return (
     <Stack.Navigator
-      screenOptions={{
-        cardStyle: {
-          backgroundColor: 'white',
-        },
-        headerStyle: {
-          elevation: 0,
-          shadowColor: 'transparent',
-        },
-      }}
+    // screenOptions={{
+    //   // cardStyle: {
+    //   //   // backgroundColor: 'red',
+    //   // },
+    //   // headerStyle: {
+    //   //   elevation: 0,
+    //   //   shadowColor: 'transparent',
+    //   // },
+    // }}
     >
       <Stack.Screen
         name="GoalsScreen"
         component={GoalsScreen}
-        options={{ title: 'Goals' }}
       />
       <Stack.Screen
         name="GoalScreen"

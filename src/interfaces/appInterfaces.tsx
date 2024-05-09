@@ -68,6 +68,7 @@ export interface GoalsResponse {
 }
 
 export interface Goal {
+  owner: string;
   id: string;
   title: string,
   description: string,

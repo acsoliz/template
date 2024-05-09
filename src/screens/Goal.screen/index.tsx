@@ -1,15 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-
-import { Picker } from '@react-native-picker/picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-
 import { StackScreenProps } from '@react-navigation/stack';
-import { GoalsStackParams } from '../navigator/GoalsNavigator';
-import { useCategories } from '../hooks/useCategories';
-import { useForm } from '../hooks/useForm';
-import { GoalsContext } from '../context/GoalsContext';
+import { GoalsStackParams } from '../../navigator/GoalsNavigator';
+import { useCategories } from '../../hooks/useCategories';
+import { useForm } from '../../hooks/useForm';
+import { GoalsContext } from '../../context/GoalsContext';
 
 interface Props extends StackScreenProps<GoalsStackParams, 'GoalScreen'> { }
 
@@ -20,6 +17,7 @@ export const GoalScreen = ({ navigation, route }: Props) => {
   const [tempUri, setTempUri] = useState<string>();
 
   const { categories } = useCategories();
+
   const { loadGoalById, addGoal, updateGoal, uploadImage, } = useContext(GoalsContext);
 
   const { _id, categoriaId, nombre, img, form, onChange, setFormValue } = useForm({
@@ -27,16 +25,23 @@ export const GoalScreen = ({ navigation, route }: Props) => {
     categoriaId: '',
     nombre: name,
     img: '',
-  });
+    type: '',
+    title: '',
+    description: '',
+    difficulty: 0,
+    status: '',
+
+  })
 
   useEffect(() => {
     navigation.setOptions({
-      title: (nombre) ? nombre : 'Sin nombre del goal',
+      title: (nombre) ? nombre : 'New Goal',
     });
   }, [nombre]);
 
   useEffect(() => {
     loadGoal();
+    // TODO aqui se debe obtener el id del usuario
 
     //ESTO SE COMENTA PARA PRUEBAS
   }, []);
@@ -47,15 +52,21 @@ export const GoalScreen = ({ navigation, route }: Props) => {
     console.log('goal::::', goal);
     console.log('goalObj::::', {
       _id: id,
-      categoriaId: goal.categoria._id,
-      img: goal.img || '',
+      //categoriaId: goal.categoria._id,
+      //img: goal.img || '',
       nombre,
     });
     setFormValue({
       _id: id,
-      categoriaId: goal.categoria._id,
-      img: goal.img || '',
+      categoriaId: '',
+      img: '',
       nombre,
+      type: goal.type,
+      title: goal.title,
+      description: goal.description,
+      difficulty: goal.difficulty,
+      status: goal.status,
+
     });
   };
 
@@ -94,18 +105,80 @@ export const GoalScreen = ({ navigation, route }: Props) => {
     });
   };
 
+  /*
+    {
+      "title": "cuarto goal",
+      "owner": "6618291c92357220dffb87b3",
+      "description": "esto es una cuarto descripcion4",
+      "type": "goal",
+      "difficulty": 2,
+      "status": "new",
+      "dates": {}
+    }
+  */
+
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.label}>titulo de la tarea:</Text>
+        <Text style={styles.label}>Title:</Text>
+        <TextInput
+          placeholder="Titulo"
+          style={styles.textInput}
+          value={nombre}
+          onChangeText={(value) => onChange(value, 'nombre')}
+        />
+
+        <Text style={styles.label}>Description:</Text>
+        <TextInput
+          placeholder="Description"
+          style={styles.textInput}
+          value={nombre}
+          onChangeText={(value) => onChange(value, 'nombre')}
+        />
+
+        <Text style={styles.label}>Type:</Text>
         <TextInput
           placeholder="Goal"
           style={styles.textInput}
           value={nombre}
           onChangeText={(value) => onChange(value, 'nombre')}
         />
-        <Text style={styles.label}>Categoría</Text>
 
+        <Text style={styles.label}>Dificulty:</Text>
+        <TextInput
+          placeholder="Goal"
+          style={styles.textInput}
+          value={nombre}
+          onChangeText={(value) => onChange(value, 'nombre')}
+        />
+
+        {/* {
+        <Text style={styles.label}>Description:</Text>
+        <TextInput
+          placeholder="Goal"
+          style={styles.textInput}
+          value={nombre}
+          onChangeText={(value) => onChange(value, 'nombre')}
+        />
+        {/* {
+    "title": "Gimnasio",
+    "owner": "6621a154c29d702f41384ed2",
+    "description": "esto es una cuarto descripcion4",
+    "type": "sport",
+    "difficulty": 2,
+    "status": "new",
+    "dates": {}
+} */}
+
+        {/* <Text style={styles.label}>Categoría</Text>
+
+        <TextInput
+          placeholder="Salud" //deberia ser un picker y las opciones son salud, economia, educacion, ocio, social
+          style={styles.textInput}
+          // value={categoria}
+          onChangeText={(value) => onChange(value, 'nombre')}
+        /> */}
+        {/* 
         <Picker
           selectedValue={categoriaId}
           onValueChange={(value) => onChange(value, 'categoriaId')}
@@ -119,7 +192,7 @@ export const GoalScreen = ({ navigation, route }: Props) => {
               />
             ))
           }
-        </Picker>
+        </Picker> */}
 
         <Button
           title="Guardar"
