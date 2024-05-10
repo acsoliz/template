@@ -100,15 +100,4 @@ export const styles = StyleSheet.create({
     listContent: {
         padding: 12
     },
-    rightAction: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#dd2c00',
-        width: 80,
-    },
-    actionText: {
-        color: '#fff',
-        fontWeight: '600',
-        padding: 20,
-    },
 });

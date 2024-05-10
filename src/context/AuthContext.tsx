@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: any) => {
 
   const checkToken = async () => {
     const token = await AsyncStorage.getItem('token');
-    console.log('', token)
+    console.log('en checkToken, token', token)
     if (!token) return dispatch({ type: 'notAuthenticated' });
 
     try {

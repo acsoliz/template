@@ -32,7 +32,6 @@ export const LoginScreen = ({ navigation }: Props) => {
   }, [errorMessage]);
 
   const onLogin = () => {
-    console.log('onLogin:::', { email, password });
     Keyboard.dismiss();
     signIn({ correo: email, password });
   };

@@ -2,6 +2,9 @@ import React, { useEffect, createContext, useState } from 'react';
 import { ImagePickerResponse } from 'react-native-image-picker';
 import authApi from '../api/authApi';
 import { Goal, GoalsResponse } from '../interfaces/appInterfaces';
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
+
 
 type GoalsContextProps = {
   goals: Goal[];
@@ -17,12 +20,16 @@ export const GoalsContext = createContext({} as GoalsContextProps);
 
 
 export const GoalsProvider = ({ children }: any) => {
+  const { status } = useContext(AuthContext);
+
 
   const [goals, setGoals] = useState<Goal[]>([]);
 
   useEffect(() => {
-    loadGoals();
-  }, []);
+    if (status === 'authenticated') {
+      loadGoals();
+    }
+  }, [status]);
 
 
   const loadGoals = async () => {

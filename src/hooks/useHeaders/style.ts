@@ -1,6 +1,5 @@
-// Goals.screeen/styles.ts
+import { constants } from "../../constants/constants";
 import { StyleSheet } from 'react-native';
-import { constants } from '../../constants/constants';
 
 export const styles = StyleSheet.create({
     SafeAreaView: {
@@ -99,16 +98,5 @@ export const styles = StyleSheet.create({
     },
     listContent: {
         padding: 12
-    },
-    rightAction: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#dd2c00',
-        width: 80,
-    },
-    actionText: {
-        color: '#fff',
-        fontWeight: '600',
-        padding: 20,
     },
 });
