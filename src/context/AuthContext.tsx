@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }: any) => {
       });
       await AsyncStorage.setItem('token', data.token);
 
-    } catch (error) {
+    } catch (error: string | any) {
       dispatch({
         type: 'addError',
         payload: error?.response?.data?.msg || 'Información incorrecta',
@@ -89,11 +89,8 @@ export const AuthProvider = ({ children }: any) => {
   const signUp = async ({ nombre, correo, password }: RegisterData) => {// the name should be registerUser
     try {
 
-      console.log('en signup, :::')
       const response = await authApi.post<LoginResponse>('api/auth/register', { email: correo, password, name: nombre });
-      console.log('respuesta del POSTT, response:::', response)
       const data = response.data;
-      console.log('respuesta del POSTT, data:::', data)
       dispatch({
         type: 'signUp',
         payload: {
@@ -104,7 +101,7 @@ export const AuthProvider = ({ children }: any) => {
 
       await AsyncStorage.setItem('token', data.token);
 
-    } catch (error) {
+    } catch (error: string | any) {
       dispatch({
         type: 'addError',
         payload: error?.response?.data.errors[0].msg || 'Revise la información',

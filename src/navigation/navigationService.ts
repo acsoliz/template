@@ -6,7 +6,7 @@ type GoalScreenNavigationProp = StackNavigationProp<GoalsStackParams, 'GoalsScre
 
 export const navigateToGoalScreen = (navigation: GoalScreenNavigationProp, item: Goal) => {
     navigation.navigate('GoalScreen', {
-        id: item._id,
+        id: item.id,
         name: item.title,
     });
 };

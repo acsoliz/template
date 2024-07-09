@@ -2,13 +2,18 @@ import { StyleSheet } from 'react-native';
 
 export const loginStyles = StyleSheet.create({
   formContainer: {
-    //border: 'groove', //TODO delete
-    // color: 'red', //TODO delete
-    flex: 1,
-    paddingHorizontal: 30,
-    justifyContent: 'center',
-    height: 600,
+    // Eliminamos propiedades obsoletas
+    border: 'groove',
+    backgroundColor: '#dbe9f7',
     marginBottom: 50,
+
+    display: 'flex', // Activamos flexbox
+    flexDirection: 'column', // Dirección horizontal
+    justifyContent: 'space-around', // Distribución con máximo espacio
+    // alignItems: 'stretch', // Extensión vertical
+    flex: 1, // Ocupación del espacio disponible
+    paddingHorizontal: 30, // Padding horizontal
+    height: 600, // Altura del contenedor
   },
   title: {
     //border: 'groove', //TODO delete
@@ -24,11 +29,11 @@ export const loginStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   inputField: {
-    elevation: 5, // Esto añade una sombra en Android
-    shadowColor: '#000', // Esto añade una sombra en iOS
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    // elevation: 5, // Esto añade una sombra en Android
+    // shadowColor: '#000', // Esto añade una sombra en iOS
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
     // boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     // width: '30rem',
     // margin: 'auto',

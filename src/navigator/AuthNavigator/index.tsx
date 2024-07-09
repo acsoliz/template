@@ -31,8 +31,35 @@ export const AuthNavigator = () => {
         (status !== 'authenticated')
           ? (
             <>
-              <Stack.Screen name="LoginScreen" component={LoginScreen} />
-              <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+              <Stack.Screen
+                options={{
+                  // headerTitle: 'Iniciar sesión', // Título del encabezado
+                  headerTitle: '', // Título del encabezado
+                  headerStyle: {
+                    backgroundColor: '#007bff', // Color de fondo del encabezado
+                    // color: '#fff', // Color del texto del encabezado
+                  },
+                  headerTitleStyle: {
+                    fontWeight: 'bold', // Estilo del texto del título
+                  },
+                  headerShown: true
+                }}
+                name="LoginScreen"
+                component={LoginScreen} />
+              <Stack.Screen
+                options={{
+                  // headerTitle: 'Iniciar sesión', // Título del encabezado
+                  headerTitle: '', // Título del encabezado
+                  headerStyle: {
+                    backgroundColor: '#007bff', // Color de fondo del encabezado
+                    // color: '#fff', // Color del texto del encabezado
+                  },
+                  headerTitleStyle: {
+                    fontWeight: 'bold', // Estilo del texto del título
+                  },
+                  headerShown: true
+                }}
+                name="RegisterScreen" component={RegisterScreen} />
             </>
           )
           : (

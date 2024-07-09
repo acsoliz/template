@@ -9,7 +9,8 @@ import { AuthContext } from './AuthContext';
 type GoalsContextProps = {
   goals: Goal[];
   loadGoals: () => Promise<void>;
-  addGoal: (categoryId: string, goalName: string) => Promise<Goal>;
+  // addGoal: (categoryId: string, goalName: string) => Promise<Goal>;
+  addGoal: (goal: Goal) => Promise<Goal>;
   updateGoal: (categoryId: string, goalName: string, goalId: string) => Promise<void>;
   deleteGoal: (id: string) => Promise<void>;
   loadGoalById: (id: string) => Promise<Goal>;
@@ -37,8 +38,10 @@ export const GoalsProvider = ({ children }: any) => {
     setGoals([...goals, ...resp?.data?.goals]);
   };
 
+
   const addGoal = async (goal: Goal): Promise<Goal> => {
     const resp = await authApi.post<Goal>('/goals', {
+      owner: '1',
       title: goal.title,
       description: goal.description,
       difficulty: goal.difficulty,
@@ -57,7 +60,7 @@ export const GoalsProvider = ({ children }: any) => {
       categoria: categoryId,
     });
     setGoals(goals.map(goal => {
-      return (goal._id === goalId)
+      return (goal.id === goalId)
         ? resp.data
         : goal;
     }));
@@ -74,29 +77,29 @@ export const GoalsProvider = ({ children }: any) => {
     return resp.data;
 
   };
-
   const uploadImage = async (data: ImagePickerResponse, id: string) => {
+    if (data.assets && data.assets.length > 0 && data.assets[0]) {
+      const asset = data.assets[0];
+      const fileToUpload = {
+        uri: asset.uri,
+        type: asset.type,
+        name: asset.fileName,
+      };
 
-    const fileToUpload = {
-      uri: data.assets[0].uri,
-      type: data.assets[0].type,
-      name: data.assets[0].fileName,
-    };
+      const formData = new FormData();
+      // formData.append('archivo', fileToUpload);
 
-    const formData = new FormData();
-    formData.append('archivo', fileToUpload);
-
-    try {
-
-      const resp = await authApi.put(`/uploads/goals/${id}`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log(JSON.stringify(resp.data, null, 2));
-
-    } catch (error) {
-      console.log(JSON.stringify(error.response, null, 2));
+      try {
+        const resp = await authApi.put(`/uploads/goals/${id}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        console.log(JSON.stringify(resp.data, null, 2));
+      } catch (error: string | any) {
+        console.log(JSON.stringify(error.response, null, 2));
+      }
+    } else {
+      console.log('No assets to upload');
     }
-
   };
 
 

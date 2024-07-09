@@ -3,16 +3,20 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/context/AuthContext';
 import { GoalsProvider } from './src/context/GoalsContext';
+import { ActivitiesProvider } from './src/context/ActivitiesContext';
+import { CategoriesProvider } from './src/context/CategoriesContext';
 import { AuthNavigator } from './src/navigator';
 
 const AppState = ({ children }: any) => {
   return (
     <AuthProvider>
-      {/* <ProductsProvider> */}
       <GoalsProvider>
-        {children}
+        <CategoriesProvider>
+          <ActivitiesProvider>
+            {children}
+          </ActivitiesProvider>
+        </CategoriesProvider>
       </GoalsProvider>
-      {/* </ProductsProvider> */}
     </AuthProvider>
   );
 };

@@ -36,21 +36,22 @@ export interface Producto {
   precio: number;
   _id: string;
   nombre: string;
-  categoria: Categoria;
-  usuario: Categoria;
+  categoria: Category;
+  usuario: Category;
   img?: string;
 }
 
 
 export interface CategoriesResponse {
   total: number;
-  categorias: Categoria[];
+  categories: Category[];
 }
 
-export interface Categoria {
-  _id: string;
-  nombre: string;
-  usuario?: CreadoPor;
+export interface Category {
+  id: string;
+  name: string;
+  icon?: string;
+  color?: string;
 }
 
 export interface CreadoPor {
@@ -93,4 +94,36 @@ export class RegisterGoalDto {
 export interface CreadoPor {
   _id: string;
   nombre: string;
+}
+
+
+//Activities
+
+// interface ActivityObj {
+//   id: string;
+//   name: string;
+//   description: string;
+//   id_category: string;
+//   frequency: string;
+// }
+
+
+
+export interface ActivitiesResponse {
+  total: number;
+  activities: Activity[];
+}
+
+export interface Activity {
+  name: string;
+  description: string;
+  id_category: string;
+  frequency: string;
+}
+
+
+export class RegisterActivityDto {
+  private constructor(
+
+  ) { }
 }
